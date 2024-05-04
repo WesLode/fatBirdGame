@@ -17,8 +17,7 @@ class Column(pygame.sprite.Sprite):
         self.pipe_top = pygame.transform.flip(self.sprite, False, True)
         self.pipe_top_rect = self.pipe_top.get_rect(topleft=(0, 0))
 
-        self.image = pygame.surface.Surface((self.sprite_rect.width, self.sprite_rect.height * 2 + self.gap),
-                                            pygame.SRCALPHA)
+        self.image = pygame.surface.Surface((self.sprite_rect.width, self.sprite_rect.height * 2 + self.gap), pygame.SRCALPHA)
         self.image.blit(self.pipe_bottom, self.pipe_bottom_rect)
         self.image.blit(self.pipe_top, self.pipe_top_rect)
 
@@ -35,3 +34,12 @@ class Column(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.x -= 2
+
+        if self.rect.right <= 0:
+            self.kill()
+
+    def is_passed(self):
+        if self.rect.x < 50 and not self.passed:
+            self.passed = True
+            return True
+        return False
