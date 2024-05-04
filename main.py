@@ -1,7 +1,7 @@
 import pygame
 import configs
 import assets
-from pythonProject.object.background import Background
+from object.background import Background
 
 pygame.init()
 
