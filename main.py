@@ -2,6 +2,8 @@ import pygame
 import configs
 import assets
 from object.background import Background
+from object.column import Column
+from object.floor import Floor
 
 pygame.init()
 
@@ -13,7 +15,13 @@ assets.load_sprites()
 
 sprites = pygame.sprite.LayeredUpdates()
 
-Background(sprites)
+Background(0, sprites)
+Background(1, sprites)
+
+Floor(0, sprites)
+Floor(1, sprites)
+
+Column(sprites)
 
 
 while running:
@@ -24,6 +32,7 @@ while running:
     screen.fill("purple")
 
     sprites.draw(screen)
+    sprites.update()
 
     pygame.display.flip()
     clock.tick(configs.FPS)
