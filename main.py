@@ -47,6 +47,9 @@ while running:
     sprites.draw(screen)
     sprites.update()
 
+    if bird.check_collision(sprites):
+        print('you got hit!!')
+
     pygame.display.flip()
     clock.tick(configs.FPS)
 
