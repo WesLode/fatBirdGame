@@ -38,7 +38,7 @@ class Bird(pygame.sprite.Sprite):
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
             self.flap = 0
-            self.flap -= 6
+            self.flap -= 3 # jump height
 
     def check_collision(self, sprites):
         for sprite in sprites:

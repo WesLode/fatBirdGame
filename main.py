@@ -12,6 +12,9 @@ screen = pygame.display.set_mode((configs.SCREEN_WIDTH, configs.SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 column_create_event = pygame.USEREVENT
 running = True
+game_over = False
+game_started = False
+score = 0
 
 assets.load_sprites()
 
@@ -45,10 +48,18 @@ while running:
     screen.fill("purple")
 
     sprites.draw(screen)
-    sprites.update()
+
+    if not game_over:
+        sprites.update()
 
     if bird.check_collision(sprites):
-        print('you got hit!!')
+        game_over = True
+
+    for sprite in sprites:
+        if type(sprite) is Column and sprite.is_passed():
+            score += 1
+
+    print(score)
 
     pygame.display.flip()
     clock.tick(configs.FPS)
